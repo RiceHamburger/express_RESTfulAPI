@@ -1,4 +1,5 @@
 import express from 'express';
+import mysql from 'mysql';
 import config from './../../config/config';
 // Router
 import gallery from './gallery.route';
