@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -w",
+    "build-nor": "webpack",
     "build:prod": "webpack -p",
     "start": "nodemon dist/index.bundle.js"
   },
