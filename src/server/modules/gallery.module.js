@@ -40,9 +40,12 @@ const selectGallery = () => {
         } else {
           connection.query( // Article撈取所有欄位的值組
             `SELECT
-              *
+            gallery.title,gallery.img,gallery.img_s,gallery_tags.tag_name
             FROM
-            gallery`
+            gallery
+            INNER JOIN gallery_tag ON
+            gallery.id = gallery_tag.g_id
+            INNER JOIN gallery_tags ON gallery_tags.id=gallery_tag.t_id`
             , (error, result) => {
               if (error) {
                 console.error('SQL error: ', error);
