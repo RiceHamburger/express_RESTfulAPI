@@ -1,4 +1,4 @@
-// gallery.module.js
+// websDev.module.js
 import mysql from 'mysql';
 import config from '../../config/config';
 
@@ -10,20 +10,14 @@ const connectionPool = mysql.createPool({
   database: config.mysqlDatabase
 });
 
-/* gallery  POST 新增 */
-const createGallery = (insertValues) => {
-  let gallery_data = {
-    "title": insertValues.title,
-    "img": insertValues.img,
-    "img_s": insertValues.img_s,
-    "tags": JSON.stringify(insertValues.tags)
-  }
+/* websDev  POST 新增 */
+const createWebsDev = (insertValues) => {
   return new Promise((resolve, reject) => {
     connectionPool.getConnection((connectionError, connection) => { // 資料庫連線
       if (connectionError) {
         reject(connectionError); // 若連線有問題回傳錯誤
       } else {
-        connection.query('INSERT INTO galleries SET ?', gallery_data, (error, result) => { // gallery資料表寫入一筆資料
+        connection.query('INSERT INTO webs_dev SET ?', insertValues, (error, result) => { // webs_dev資料表寫入一筆資料
           if (error) {
             console.error('SQL error: ', error); // 寫入資料庫有問題時回傳錯誤
             reject(error);
@@ -37,8 +31,8 @@ const createGallery = (insertValues) => {
   });
 };
 
-/*  gallery GET 取得  */
-const selectGallery = () => {
+/*  websDev GET 取得  */
+const selectWebsDev = () => {
     return new Promise((resolve, reject) => {
       connectionPool.getConnection((connectionError, connection) => { // 資料庫連線
         if (connectionError) {
@@ -48,7 +42,7 @@ const selectGallery = () => {
             `SELECT
               *
             FROM
-            galleries`
+            webs_dev ORDER BY id desc`
             , (error, result) => {
               if (error) {
                 console.error('SQL error: ', error);
@@ -65,6 +59,6 @@ const selectGallery = () => {
   };
 
 export default {
-    createGallery,
-    selectGallery
+  createWebsDev,
+  selectWebsDev
 };

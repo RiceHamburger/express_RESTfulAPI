@@ -4,6 +4,7 @@ import config from './../../config/config';
 // Router
 import gallery from './gallery.route';
 import project from './project.route';
+import webDev from './websDev.route';
 
 const router = express.Router();
 
@@ -37,5 +38,8 @@ router.use('/gallery', gallery);
 
 /** project Router */
 router.use('/project', project);
+
+/** webDev Router */
+router.use('/webDev', project);
 
 export default router;
