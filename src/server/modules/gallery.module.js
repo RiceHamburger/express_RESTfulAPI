@@ -48,7 +48,7 @@ const selectGallery = () => {
                 console.error('SQL error: ', error);
                 reject(error); // 寫入資料庫有問題時回傳錯誤
               } else {
-                resolve(result[0].tags); // 撈取成功回傳 JSON 資料
+                resolve(JSON.parse(result[0].tags)[0]); // 撈取成功回傳 JSON 資料
               }
               connection.release();
             }
