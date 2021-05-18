@@ -53,7 +53,7 @@ const selectProject = () => {
             `SELECT
               *
             FROM
-            projects`
+            projects ORDER BY id desc`
             , (error, result) => {
               if (error) {
                 console.error('SQL error: ', error);

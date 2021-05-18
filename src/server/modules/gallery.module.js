@@ -12,12 +12,18 @@ const connectionPool = mysql.createPool({
 
 /* gallery  POST 新增 */
 const createGallery = (insertValues) => {
+  let gallery_data = {
+    "title": insertValues.title,
+    "img": insertValues.img,
+    "img_s": insertValues.img_s,
+    "tags": JSON.stringify(insertValues.tags)
+  }
   return new Promise((resolve, reject) => {
     connectionPool.getConnection((connectionError, connection) => { // 資料庫連線
       if (connectionError) {
         reject(connectionError); // 若連線有問題回傳錯誤
       } else {
-        connection.query('INSERT INTO gallery SET ?', insertValues, (error, result) => { // gallery資料表寫入一筆資料
+        connection.query('INSERT INTO gallery SET ?', gallery_data, (error, result) => { // gallery資料表寫入一筆資料
           if (error) {
             console.error('SQL error: ', error); // 寫入資料庫有問題時回傳錯誤
             reject(error);
