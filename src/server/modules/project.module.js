@@ -12,12 +12,23 @@ const connectionPool = mysql.createPool({
 
 /* project  POST 新增 */
 const createProject = (insertValues) => {
+  let project_data = {
+    "title": insertValues.title,
+    "create_time": insertValues.create_time,
+    "description": insertValues.description,
+    "in_charge": JSON.stringify(insertValues.in_charge),
+    "tools": insertValues.tools,
+    "video": insertValues.video,
+    "main_img": insertValues.main_img,
+    "imgs": JSON.stringify(insertValues.imgs)
+  }
+
   return new Promise((resolve, reject) => {
     connectionPool.getConnection((connectionError, connection) => { // 資料庫連線
       if (connectionError) {
         reject(connectionError); // 若連線有問題回傳錯誤
       } else {
-        connection.query('INSERT INTO projects SET ?', insertValues, (error, result) => { // projects資料表寫入一筆資料
+        connection.query('INSERT INTO projects SET ?', project_data, (error, result) => { // projects資料表寫入一筆資料
           if (error) {
             console.error('SQL error: ', error); // 寫入資料庫有問題時回傳錯誤
             reject(error);
