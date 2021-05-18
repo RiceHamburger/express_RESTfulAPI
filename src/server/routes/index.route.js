@@ -3,6 +3,7 @@ import mysql from 'mysql';
 import config from './../../config/config';
 // Router
 import gallery from './gallery.route';
+import project from './project.route';
 
 const router = express.Router();
 
@@ -33,5 +34,8 @@ router.get('/sqlTest', (req, res) => {
 
 /** gallery Router */
 router.use('/gallery', gallery);
+
+/** project Router */
+router.use('/project', project);
 
 export default router;
