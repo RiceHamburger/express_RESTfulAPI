@@ -40,6 +40,6 @@ router.use('/gallery', gallery);
 router.use('/project', project);
 
 /** webDev Router */
-router.use('/webDev', project);
+router.use('/webDev', webDev);
 
 export default router;
