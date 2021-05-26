@@ -42,7 +42,7 @@ const selectWebsDev = () => {
             `SELECT
               *
             FROM
-            webs_dev ORDER BY id desc`
+            webs_dev`
             , (error, result) => {
               if (error) {
                 console.error('SQL error: ', error);
